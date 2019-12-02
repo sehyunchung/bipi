@@ -24,7 +24,7 @@ export class Bpm {
   }
 
   get bpm() {
-    if (!this.beats.length) return
+    if (!this.beats.length) return 0
     let sum = 0
     for (let i = 0; i < this.beats.length; i++) {
       sum += this.beats[i]
