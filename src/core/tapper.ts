@@ -25,11 +25,14 @@ export class Bpm {
 
   get bpm() {
     if (!this.beats.length) return 0
-    let sum = 0
-    for (let i = 0; i < this.beats.length; i++) {
-      sum += this.beats[i]
-    }
-    const average = sum / this.beats.length
-    return Math.floor(60000 / average)
+
+    const sum = this.beats.reduce((acc, beat) => {
+      acc += beat
+      return acc
+    }, 0)
+    const average = Math.floor(sum / this.beats.length / 10) * 10
+    const bpm = 60000 / average
+
+    return bpm
   }
 }
