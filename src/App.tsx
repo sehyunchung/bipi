@@ -24,6 +24,10 @@ const Bpm: React.FC = () => {
   )
 }
 
+const Footer: React.FC = () => {
+  return <footer>by sehyunchung</footer>
+}
+
 const Header = () => <h1>Bipi!</h1>
 
 const App: React.FC = () => {
@@ -31,6 +35,7 @@ const App: React.FC = () => {
     <div className="App">
       <Header />
       <Bpm />
+      <Footer />
     </div>
   )
 }
