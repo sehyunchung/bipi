@@ -1,4 +1,4 @@
-export class Bpm {
+export class Tapper {
   private cue: number[] = []
   private max = 8
 

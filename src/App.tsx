@@ -1,23 +1,23 @@
 import React, { useState } from 'react'
-import { Bpm } from './core/tapper'
+import { Tapper } from './core/tapper'
 
 const useBpm = () => {
-  const bipi = new Bpm()
+  const tapper = new Tapper()
   const [bpm, setBpm] = useState(0)
 
   const tap = () => {
-    bipi.tap()
-    if (bipi.bpm) setBpm(bipi.bpm)
+    tapper.tap()
+    if (tapper.bpm) setBpm(tapper.bpm)
   }
 
   return { bpm, tap }
 }
 
-const Tapper: React.FC = () => {
+const Bpm: React.FC = () => {
   const { bpm, tap } = useBpm()
 
   return (
-    <div className="tapper">
+    <div className="bpm">
       <div>{bpm}</div>
       <button onClick={tap}>tap!</button>
     </div>
@@ -30,7 +30,7 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <Header />
-      <Tapper />
+      <Bpm />
     </div>
   )
 }
