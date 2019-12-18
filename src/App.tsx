@@ -1,4 +1,7 @@
+/** @jsx jsx */
 import React, { useState } from 'react'
+import { Global, css, jsx } from '@emotion/core'
+
 import { Tapper } from './core/tapper'
 
 const useBpm = () => {
@@ -13,29 +16,47 @@ const useBpm = () => {
   return { bpm, tap }
 }
 
+const globalStyle = css`
+  body {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
+`
+const appStyle = css`
+  height: 100vh;
+  width: 100vw;
+  background-color: #afafaf;
+`
+
+const bpmStyle = css`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  user-select: none;
+  font-size: 50vw;
+  font-family: Menlo, Fira Code, Inconsolata, Monaco, Consolas, 'Courier New',
+    Courier, monospace;
+  text-align: center;
+  color: #ffffff;
+`
+
 const Bpm: React.FC = () => {
   const { bpm, tap } = useBpm()
 
   return (
-    <div className="bpm">
-      <div>{bpm}</div>
-      <button onClick={tap}>tap!</button>
+    <div css={bpmStyle} onClick={tap}>
+      {bpm}
     </div>
   )
 }
 
-const Footer: React.FC = () => {
-  return <footer>by sehyunchung</footer>
-}
-
-const Header = () => <h1>Bipi!</h1>
-
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <Header />
+    <div css={appStyle} className="App">
+      <Global styles={globalStyle} />
       <Bpm />
-      <Footer />
     </div>
   )
 }
