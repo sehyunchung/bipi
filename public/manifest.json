@@ -1,6 +1,6 @@
 {
-    "short_name": "Bipi",
-    "name": "Bpm Tapper PWA",
+    "short_name": "Bipi!",
+    "name": "Bipi! - A Bpm Tapper PWA",
     "icons": [{
             "src": "favicon.ico",
             "sizes": "64x64 32x32 24x24 16x16",
@@ -19,6 +19,6 @@
     ],
     "start_url": ".",
     "display": "standalone",
-    "theme_color": "#000000",
-    "background_color": "#ffffff"
+    "theme_color": "#AFAFAF",
+    "background_color": "#AFAFAF"
 }
