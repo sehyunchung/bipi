@@ -1,7 +1,7 @@
 /** @jsx jsx */
-import React, { useState } from 'react'
+import React, { Fragment, useState } from 'react'
 import { Global, css, jsx } from '@emotion/core'
-
+import { MobileView, BrowserView } from 'react-device-detect'
 import { Tapper } from './core/tapper'
 
 const useBpm = () => {
@@ -46,9 +46,18 @@ const Bpm: React.FC = () => {
   const { bpm, tap } = useBpm()
 
   return (
-    <div css={bpmStyle} onClick={tap}>
-      {bpm}
-    </div>
+    <Fragment>
+      <MobileView>
+        <div css={bpmStyle} onTouchEnd={tap}>
+          {bpm}
+        </div>
+      </MobileView>
+      <BrowserView>
+        <div css={bpmStyle} onClick={tap}>
+          {bpm}
+        </div>
+      </BrowserView>
+    </Fragment>
   )
 }
 
