@@ -36,8 +36,8 @@ const bpmStyle = css`
   transform: translateX(-50%) translateY(-50%);
   user-select: none;
   font-size: 50vw;
-  font-family: Menlo, Fira Code, Inconsolata, Monaco, Consolas, 'Courier New',
-    Courier, monospace;
+  font-family: 'IBM Plex Mono', Menlo, Fira Code, Inconsolata, Monaco, Consolas,
+    'Courier New', Courier, monospace;
   text-align: center;
   color: #ffffff;
 `
