@@ -21,12 +21,12 @@ const globalStyle = css`
     overflow: hidden;
     margin: 0;
     padding: 0;
+    background-color: #afafaf;
   }
 `
 const appStyle = css`
   height: 100vh;
   width: 100vw;
-  background-color: #afafaf;
 `
 
 const bpmStyle = css`
