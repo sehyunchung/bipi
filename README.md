@@ -1,3 +1,3 @@
-# bipi
+# Bipi!
 
-bpm tapper pwa
+A Simple BPM Tapper PWA
