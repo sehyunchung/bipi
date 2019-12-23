@@ -1,10 +1,10 @@
 /** @jsx jsx */
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { Global, css, jsx } from '@emotion/core'
 import { MobileView, BrowserView } from 'react-device-detect'
 import { Tapper } from './core/tapper'
 
-const useBpm = () => {
+const useTapper = () => {
   const tapper = new Tapper()
   const [bpm, setBpm] = useState(0)
 
@@ -13,7 +13,12 @@ const useBpm = () => {
     if (tapper.bpm) setBpm(tapper.bpm)
   }
 
-  return { bpm, tap }
+  const reset = () => {
+    tapper.reset()
+    setBpm(0)
+  }
+
+  return { bpm, tap, reset }
 }
 
 const globalStyle = css`
@@ -43,7 +48,16 @@ const bpmStyle = css`
 `
 
 const Bpm: React.FC = () => {
-  const { bpm, tap } = useBpm()
+  const { bpm, reset, tap } = useTapper()
+
+  useEffect(() => {
+    const id = setTimeout(() => {
+      reset()
+    }, 3000)
+    return () => {
+      clearTimeout(id)
+    }
+  }, [bpm])
 
   return (
     <Fragment>
