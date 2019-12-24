@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React, { useEffect, useState } from 'react'
 import { css, jsx } from '@emotion/core'
-import { useSpring, animated, interpolate } from 'react-spring'
+import { useSpring, animated } from 'react-spring'
 import { Tapper } from '../core/tapper'
 import { STYLE, TAPPER } from '../constants'
 
@@ -37,22 +37,41 @@ const useTapper = () => {
 
 const Bpm: React.FC = () => {
   const { bpm, tap, reset } = useTapper()
+  const [on, toggle] = useState(true)
+  const { x } = useSpring({
+    from: { x: 0 },
+    x: on ? 1 : 0,
+    config: { duration: 100 },
+  })
+
+  const handleClick = () => {
+    tap()
+    toggle(on => !on)
+  }
 
   useEffect(() => {
     const id = setTimeout(() => {
       reset()
+      toggle(on => !on)
     }, TAPPER.TIME_OUT)
     return () => {
       clearTimeout(id)
     }
   }, [bpm, reset])
 
-  const props = useSpring({ number: bpm })
-
   return (
-    <div css={bpmStyle} onClick={tap}>
-      <animated.span>
-        {props.number.interpolate(num => num.toFixed(0))}
+    <div css={bpmStyle} onClick={handleClick}>
+      <animated.span
+        style={{
+          transform: x
+            .interpolate({
+              range: [0, 0.5, 1],
+              output: [1, 0.95, 1],
+            })
+            .interpolate(x => `scale(${x})`),
+        }}
+      >
+        {bpm}
       </animated.span>
     </div>
   )
