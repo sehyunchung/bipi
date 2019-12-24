@@ -25,7 +25,7 @@ export class Tapper {
     }
 
     const sum = beats.reduce((acc, beat) => (acc += beat), 0)
-    const average = sum / beats.length
+    const average = Math.floor(sum / beats.length / 10) * 10
     const bpm = Math.floor(60000 / average)
     return bpm
   }
