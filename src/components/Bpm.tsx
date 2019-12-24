@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import React, { useEffect, useState } from 'react'
 import { css, jsx } from '@emotion/core'
+import { useSpring, animated, interpolate } from 'react-spring'
 import { Tapper } from '../core/tapper'
 import { STYLE, TAPPER } from '../constants'
 
@@ -46,9 +47,13 @@ const Bpm: React.FC = () => {
     }
   }, [bpm, reset])
 
+  const props = useSpring({ number: bpm })
+
   return (
     <div css={bpmStyle} onClick={tap}>
-      <span>{bpm}</span>
+      <animated.span>
+        {props.number.interpolate(num => num.toFixed(0))}
+      </animated.span>
     </div>
   )
 }
