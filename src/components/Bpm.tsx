@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { css, jsx } from '@emotion/core'
 import { Tapper } from '../core/tapper'
+import { STYLE } from '../constants'
 
 const bpmStyle = css`
   width: 100%;
@@ -11,10 +12,9 @@ const bpmStyle = css`
   align-items: center;
   user-select: none;
   font-size: 50vw;
-  font-family: 'IBM Plex Mono', Menlo, Inconsolata, Monaco, Consolas,
-    'Courier New', Courier, monospace;
   text-align: center;
-  color: #ffffff;
+  font-family: ${STYLE.FONT.FAMILY};
+  color: ${STYLE.COLOR.BPM_TEXT};
 `
 
 const useTapper = () => {

@@ -3,13 +3,14 @@ import React from 'react'
 import { Global, css, jsx } from '@emotion/core'
 
 import Bpm from './components/Bpm'
+import { STYLE } from './constants'
 
 const globalStyle = css`
   body {
     overflow: hidden;
     margin: 0;
     padding: 0;
-    background-color: #afafaf;
+    background-color: ${STYLE.COLOR.BACKGROUND};
   }
 `
 
