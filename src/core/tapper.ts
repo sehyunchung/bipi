@@ -1,9 +1,10 @@
 export class Tapper {
-  private cue: number[] = []
-  private max = 8
+  private cue: number[]
+  private max: number
 
-  constructor(max: number = 8) {
+  constructor(max: number = 9) {
     this.max = max
+    this.cue = []
   }
 
   tap() {
@@ -15,21 +16,17 @@ export class Tapper {
     this.cue = []
   }
 
-  private get beats() {
-    const beats = []
-    for (let i = 0; i < this.cue.length - 1; i++) {
-      beats.push(this.cue[i + 1] - this.cue[i])
-    }
-    return beats
-  }
-
   get bpm() {
-    if (!this.beats.length) return 0
+    if (this.cue.length < 4) return 0
 
-    const sum = this.beats.reduce((acc, beat) => (acc += beat))
-    const average = Math.floor(sum / this.beats.length / 10) * 10
+    let beats = []
+    for (let i = 0; i < this.cue.length; i++) {
+      if (this.cue[i + 1]) beats.push(this.cue[i + 1] - this.cue[i])
+    }
+
+    const sum = beats.reduce((acc, beat) => (acc += beat), 0)
+    const average = sum / beats.length
     const bpm = Math.floor(60000 / average)
-
     return bpm
   }
 }

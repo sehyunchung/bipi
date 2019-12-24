@@ -17,9 +17,9 @@ const bpmStyle = css`
   font-family: ${STYLE.FONT.FAMILY};
   color: ${STYLE.COLOR.BPM_TEXT};
 `
+const tapper = new Tapper()
 
 const useTapper = () => {
-  const tapper = new Tapper()
   const [bpm, setBpm] = useState(0)
 
   const tap = () => {
