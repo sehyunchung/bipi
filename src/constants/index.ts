@@ -1,3 +1,4 @@
 import STYLE from './style'
+import TAPPER from './tapper'
 
-export { STYLE }
+export { STYLE, TAPPER }

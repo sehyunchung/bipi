@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { css, jsx } from '@emotion/core'
 import { Tapper } from '../core/tapper'
-import { STYLE } from '../constants'
+import { STYLE, TAPPER } from '../constants'
 
 const bpmStyle = css`
   width: 100%;
@@ -40,7 +40,7 @@ const Bpm: React.FC = () => {
   useEffect(() => {
     const id = setTimeout(() => {
       reset()
-    }, 3000)
+    }, TAPPER.TIME_OUT)
     return () => {
       clearTimeout(id)
     }
