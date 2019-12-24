@@ -18,7 +18,7 @@ describe('Tapper 클래스를 테스트하자', () => {
       }, 500)
       setTimeout(() => {
         resolve(clearInterval(id))
-      }, 2000)
+      }, 2500)
     })
     await tap120
     expect(tapper.bpm).toBe(120)
@@ -33,7 +33,7 @@ describe('Tapper 클래스를 테스트하자', () => {
       }, 400)
       setTimeout(() => {
         resolve(clearInterval(id))
-      }, 1600)
+      }, 2000)
     })
     await tap150
     expect(tapper.bpm).toBe(150)
