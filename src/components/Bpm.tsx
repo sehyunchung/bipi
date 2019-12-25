@@ -41,7 +41,7 @@ const Bpm: React.FC = () => {
   const { x } = useSpring({
     from: { x: 0 },
     x: on ? 1 : 0,
-    config: { duration: 100 },
+    config: { duration: 80 },
   })
 
   const handleClick = () => {
@@ -65,7 +65,7 @@ const Bpm: React.FC = () => {
         style={{
           transform: x
             .interpolate({
-              range: [0, 0.5, 1],
+              range: [0, 0.4, 1],
               output: [1, 0.8, 1],
             })
             .interpolate(x => `scale(${x})`),
