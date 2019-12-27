@@ -6,6 +6,7 @@ import { Tapper } from '../core/tapper'
 import { STYLE, TAPPER } from '../constants'
 
 const bpmStyle = css`
+  margin-top: -2vw;
   width: 100%;
   height: 100%;
   display: flex;
