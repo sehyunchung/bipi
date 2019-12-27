@@ -1,15 +1,21 @@
 export class Tapper {
-  private cue: number[]
-  private max: number
+  private static instance: Tapper
+  private cue: number[] = []
 
-  constructor(max: number = 9) {
-    this.max = max
-    this.cue = []
+  public static new() {
+    if (!Tapper.instance) {
+      Tapper.instance = new Tapper()
+    }
+    return Tapper.instance
   }
 
   tap() {
-    this.cue.push(Date.now())
-    if (this.cue.length > this.max) this.cue.shift()
+    let cur = Date.now()
+    let last = this.cue[this.cue.length - 1]
+    if (cur - last > 2000) {
+      this.reset()
+    }
+    this.cue.push(cur)
   }
 
   reset() {
@@ -17,16 +23,13 @@ export class Tapper {
   }
 
   get bpm() {
-    if (this.cue.length < 4) return 0
+    if (this.cue.length < 2) return 0
 
-    let beats = []
-    for (let i = 0; i < this.cue.length; i++) {
-      if (this.cue[i + 1]) beats.push(this.cue[i + 1] - this.cue[i])
-    }
+    let beatCount = this.cue.length - 1
+    let first = this.cue[0]
+    let last = this.cue[this.cue.length - 1]
+    let averageBpm = (60000 * beatCount) / (last - first)
 
-    const sum = beats.reduce((acc, beat) => (acc += beat), 0)
-    const average = Math.floor(sum / beats.length / 10) * 10
-    const bpm = Math.floor(60000 / average)
-    return bpm
+    return Math.round(averageBpm * 10) / 10
   }
 }
