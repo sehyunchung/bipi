@@ -9,15 +9,28 @@ const bpmStyle = css`
   width: 100%;
   height: 100%;
   display: flex;
+  position: relative;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   user-select: none;
-  font-size: 50vw;
+  font-size: 45vw;
+  font-weight: 500;
   text-align: center;
   font-family: ${STYLE.FONT.FAMILY};
-  color: ${STYLE.COLOR.BPM_TEXT};
+  color: ${STYLE.COLOR.BPM_PRIMARY_TEXT};
 `
-const tapper = new Tapper(5)
+const decimalBpmStyle = css`
+  font-weight: 400;
+  font-size: 4vw;
+  color: ${STYLE.COLOR.BPM_SECONDARY_TEXT};
+  position: absolute;
+  bottom: 4vw;
+  left: 50%;
+  transform: translateX(-50%);
+`
+
+const tapper = Tapper.new()
 
 const useTapper = () => {
   const [bpm, setBpm] = useState(0)
@@ -41,7 +54,7 @@ const Bpm: React.FC = () => {
   const { x } = useSpring({
     from: { x: 0 },
     x: on ? 1 : 0,
-    config: { duration: 40 },
+    config: { duration: 20 },
   })
 
   const handleClick = () => {
@@ -61,7 +74,7 @@ const Bpm: React.FC = () => {
 
   return (
     <div css={bpmStyle} onClick={handleClick}>
-      <animated.span
+      <animated.div
         style={{
           transform: x
             .interpolate({
@@ -71,8 +84,9 @@ const Bpm: React.FC = () => {
             .interpolate(x => `scale(${x})`),
         }}
       >
-        {bpm}
-      </animated.span>
+        <span>{Math.round(bpm)}</span>
+        <div css={decimalBpmStyle}>{bpm}</div>
+      </animated.div>
     </div>
   )
 }
