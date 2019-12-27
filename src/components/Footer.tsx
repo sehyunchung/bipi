@@ -26,7 +26,7 @@ export default function Footer() {
         target="_blank"
         rel="noopener noreferrer"
       >
-        from sehyunchung with ♥
+        made with ♥ by sehyunchung
       </a>
     </footer>
   )
