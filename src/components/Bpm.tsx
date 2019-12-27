@@ -15,14 +15,17 @@ const bpmStyle = css`
   text-align: center;
 `
 const bpmTextStyle = css`
-  font-size: 38vw;
+  font-size: 40vw;
   font-weight: 500;
   font-family: ${STYLE.FONT.FAMILY};
   color: ${STYLE.COLOR.BPM_PRIMARY_TEXT};
+  margin-top: -4.4vh;
+  display: block;
 `
+
 const bpmDecimalTextStyle = css`
   margin-left: -3.2vw;
-  padding-right: 2.4vw;
+  padding-right: 2vw;
   font-weight: 400;
   font-size: 0.5em;
   letter-spacing: -2.4vw;

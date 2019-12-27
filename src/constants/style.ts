@@ -1,4 +1,4 @@
-const BACKGROUND: string = 'hsl(0, 0%, 68%)'
+const BACKGROUND: string = 'hsl(0, 0%, 66%)'
 const BPM_PRIMARY_TEXT: string = 'hsl(0, 0%, 94%)'
 const BPM_SECONDARY_TEXT: string = 'hsl(0, 0%, 84%)	'
 
