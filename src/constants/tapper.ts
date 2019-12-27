@@ -1,4 +1,4 @@
-const TIME_OUT = 5000
+const TIME_OUT = 4000
 
 export default {
   TIME_OUT,

@@ -6,29 +6,27 @@ import { Tapper } from '../core/tapper'
 import { STYLE, TAPPER } from '../constants'
 
 const bpmStyle = css`
-  margin-top: -2vw;
-  width: 100%;
-  height: 100%;
   display: flex;
-  position: relative;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100%;
   user-select: none;
-  font-size: 45vw;
-  font-weight: 500;
   text-align: center;
+`
+const bpmTextStyle = css`
+  font-size: 38vw;
+  font-weight: 500;
   font-family: ${STYLE.FONT.FAMILY};
   color: ${STYLE.COLOR.BPM_PRIMARY_TEXT};
 `
-const decimalBpmStyle = css`
+const bpmDecimalTextStyle = css`
+  margin-left: -3.2vw;
+  padding-right: 2.4vw;
   font-weight: 400;
-  font-size: 4vw;
+  font-size: 0.5em;
+  letter-spacing: -2.4vw;
   color: ${STYLE.COLOR.BPM_SECONDARY_TEXT};
-  position: absolute;
-  bottom: 4vw;
-  left: 50%;
-  transform: translateX(-50%);
 `
 
 const tapper = Tapper.new()
@@ -73,6 +71,8 @@ const Bpm: React.FC = () => {
     }
   }, [bpm, reset])
 
+  const decimal = Math.floor((bpm - Math.floor(bpm)) * 10)
+
   return (
     <div css={bpmStyle} onClick={handleClick}>
       <animated.div
@@ -85,8 +85,10 @@ const Bpm: React.FC = () => {
             .interpolate(x => `scale(${x})`),
         }}
       >
-        <span>{Math.round(bpm)}</span>
-        <div css={decimalBpmStyle}>{bpm}</div>
+        <span css={bpmTextStyle}>
+          {Math.floor(bpm)}
+          {bpm ? <span css={bpmDecimalTextStyle}>.{decimal}</span> : ''}
+        </span>
       </animated.div>
     </div>
   )
