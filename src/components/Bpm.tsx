@@ -42,16 +42,16 @@ const useTapper = () => {
     if (tapper.bpm) setBpm(tapper.bpm)
   }
 
-  const reset = () => {
+  const resetBpm = () => {
     tapper.reset()
     setBpm(tapper.bpm)
   }
 
-  return { bpm, tap, reset }
+  return { bpm, tap, resetBpm }
 }
 
 const Bpm: React.FC = () => {
-  const { bpm, tap, reset } = useTapper()
+  const { bpm, tap, resetBpm } = useTapper()
   const [on, toggle] = useState(true)
   const { x } = useSpring({
     from: { x: 0 },
@@ -66,13 +66,13 @@ const Bpm: React.FC = () => {
 
   useEffect(() => {
     const id = setTimeout(() => {
-      reset()
+      resetBpm()
       toggle(on => !on)
     }, TAPPER.TIME_OUT)
     return () => {
       clearTimeout(id)
     }
-  }, [bpm, reset])
+  }, [bpm, resetBpm])
 
   const decimal = Math.floor((bpm - Math.floor(bpm)) * 10)
 
