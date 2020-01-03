@@ -83,7 +83,7 @@ const Bpm: React.FC = () => {
           transform: x
             .interpolate({
               range: [0, 0.5, 1],
-              output: [1, 1.2, 1],
+              output: [1, 1.1, 1],
             })
             .interpolate(x => `scale(${x})`),
         }}
