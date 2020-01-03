@@ -17,8 +17,9 @@
             "sizes": "512x512"
         }
     ],
-    "start_url": ".",
+    "start_url": "bipi.me",
     "display": "standalone",
-    "theme_color": "#AFAFAF",
-    "background_color": "#AFAFAF"
+    "theme_color": "hsl(0, 0%, 64%)",
+    "background_color": "hsl(0, 0%, 64%)",
+    "orientation": "landscape"
 }
