@@ -8,9 +8,45 @@
 
 import SwiftUI
 
+var t = Tapper()
+
 struct ContentView: View {
+    @State var bpm = 0 as Double
+
     var body: some View {
-        Text("Hello, World!")
+        VStack {
+            Text("Bipi!").font(.largeTitle).bold().foregroundColor(.secondary)
+
+            Spacer()
+
+            Button(
+                action: {
+                    self.tap()
+                }
+            ) {
+                Text(String(bpm)).font(.custom("IBMPlexMono-Bold", size: 100)).foregroundColor(.primary)
+            }
+
+            Spacer()
+
+            Button(
+                action: {
+                    self.reset()
+                }
+            ) {
+                Text("reset")
+            }
+        }
+    }
+
+    func tap() {
+        t.tap()
+        bpm = t.bpm
+    }
+
+    func reset() {
+        t.reset()
+        bpm = t.bpm
     }
 }
 
