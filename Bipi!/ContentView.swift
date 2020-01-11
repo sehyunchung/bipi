@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-var t = Tapper()
+var tapper = Tapper()
 
 struct ContentView: View {
     @State var bpm = 0 as Double
@@ -40,13 +40,13 @@ struct ContentView: View {
     }
 
     func tap() {
-        t.tap()
-        bpm = t.bpm
+        tapper.tap()
+        bpm = tapper.bpm
     }
 
     func reset() {
-        t.reset()
-        bpm = t.bpm
+        tapper.reset()
+        bpm = tapper.bpm
     }
 }
 

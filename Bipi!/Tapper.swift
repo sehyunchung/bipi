@@ -9,12 +9,12 @@
 import Foundation
 
 struct Tapper {
-    private let ONE_SEC: Int = 60000
+    private let oneSec: Int = 60000
     private var cue: [Double] = []
 
     mutating func tap() {
-        let ms = NSDate().timeIntervalSince1970 * 1000
-        cue.append(ms)
+        let currenTime = NSDate().timeIntervalSince1970 * 1000
+        cue.append(currenTime)
     }
 
     mutating func reset() {
@@ -28,7 +28,7 @@ struct Tapper {
 
         let beats = cue.count - 1
         let duration = cue.last! - cue.first!
-        let rawBpm = Double(ONE_SEC * beats) / duration
+        let rawBpm = Double(oneSec * beats) / duration
         let twoDecimalBpm = (rawBpm * 100).rounded() / 100
 
         return twoDecimalBpm
