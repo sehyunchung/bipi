@@ -18,6 +18,7 @@ struct Tapper {
 
         guard (currentTime - prevTime) < 1000 else {
             reset()
+            cue.append(currentTime)
             return
         }
 
