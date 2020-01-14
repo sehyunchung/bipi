@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		67563FE823C9874700B46E2F /* IBMPlexMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 67563FE623C9874700B46E2F /* IBMPlexMono-Bold.ttf */; };
-		67563FE923C9874700B46E2F /* IBMPlexMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 67563FE723C9874700B46E2F /* IBMPlexMono-Regular.ttf */; };
+		672E503623CC87440041324A /* neodgm.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 672E503523CC87440041324A /* neodgm.ttf */; };
 		6766866D23C5CB1D006BA610 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766866C23C5CB1D006BA610 /* AppDelegate.swift */; };
 		6766866F23C5CB1D006BA610 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766866E23C5CB1D006BA610 /* SceneDelegate.swift */; };
 		6766867123C5CB1D006BA610 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766867023C5CB1D006BA610 /* ContentView.swift */; };
@@ -38,8 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		67563FE623C9874700B46E2F /* IBMPlexMono-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-Bold.ttf"; sourceTree = "<group>"; };
-		67563FE723C9874700B46E2F /* IBMPlexMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-Regular.ttf"; sourceTree = "<group>"; };
+		672E503523CC87440041324A /* neodgm.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = neodgm.ttf; sourceTree = "<group>"; };
 		6766866923C5CB1D006BA610 /* Bipi!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bipi!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6766866C23C5CB1D006BA610 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6766866E23C5CB1D006BA610 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,8 +83,7 @@
 		67563FDD23C983DE00B46E2F /* fonts */ = {
 			isa = PBXGroup;
 			children = (
-				67563FE623C9874700B46E2F /* IBMPlexMono-Bold.ttf */,
-				67563FE723C9874700B46E2F /* IBMPlexMono-Regular.ttf */,
+				672E503523CC87440041324A /* neodgm.ttf */,
 			);
 			path = fonts;
 			sourceTree = "<group>";
@@ -258,9 +255,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67563FE823C9874700B46E2F /* IBMPlexMono-Bold.ttf in Resources */,
+				672E503623CC87440041324A /* neodgm.ttf in Resources */,
 				6766867923C5CB21006BA610 /* LaunchScreen.storyboard in Resources */,
-				67563FE923C9874700B46E2F /* IBMPlexMono-Regular.ttf in Resources */,
 				6766867623C5CB21006BA610 /* Preview Assets.xcassets in Resources */,
 				6766867323C5CB21006BA610 /* Assets.xcassets in Resources */,
 			);
@@ -298,7 +294,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint autocorrect\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint autocorrect\n  swiftformat ./Bipi! --swiftversion 5.1.3\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
