@@ -13,8 +13,15 @@ struct Tapper {
     private var cue: [Double] = []
 
     mutating func tap() {
-        let currenTime = NSDate().timeIntervalSince1970 * 1000
-        cue.append(currenTime)
+        let currentTime = NSDate().timeIntervalSince1970 * 1000
+        let prevTime = cue.last ?? currentTime
+
+        guard (currentTime - prevTime) < 1000 else {
+            reset()
+            return
+        }
+
+        cue.append(currentTime)
     }
 
     mutating func reset() {
