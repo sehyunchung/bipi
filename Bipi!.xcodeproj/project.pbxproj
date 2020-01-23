@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		672E503623CC87440041324A /* neodgm.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 672E503523CC87440041324A /* neodgm.ttf */; };
+		672E503823CDD7640041324A /* BpmAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672E503723CDD7640041324A /* BpmAnimationView.swift */; };
+		675CEEC823D74C760068DEA8 /* PressStart2P-vaV7.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 675CEEC723D74C760068DEA8 /* PressStart2P-vaV7.ttf */; };
+		675CEECA23D7516E0068DEA8 /* apple-iie-40.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 675CEEC923D7516E0068DEA8 /* apple-iie-40.ttf */; };
 		6766866D23C5CB1D006BA610 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766866C23C5CB1D006BA610 /* AppDelegate.swift */; };
 		6766866F23C5CB1D006BA610 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766866E23C5CB1D006BA610 /* SceneDelegate.swift */; };
 		6766867123C5CB1D006BA610 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766867023C5CB1D006BA610 /* ContentView.swift */; };
@@ -17,6 +20,8 @@
 		6766868423C5CB21006BA610 /* Bipi_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766868323C5CB21006BA610 /* Bipi_Tests.swift */; };
 		6766868F23C5CB21006BA610 /* Bipi_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766868E23C5CB21006BA610 /* Bipi_UITests.swift */; };
 		6766869D23C608C3006BA610 /* Tapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6766869C23C608C3006BA610 /* Tapper.swift */; };
+		67967FEE23D99C4500926A01 /* PetMe128.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 67967FED23D99C4500926A01 /* PetMe128.ttf */; };
+		67967FF023D99CDD00926A01 /* PetMe1282Y.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 67967FEF23D99CDD00926A01 /* PetMe1282Y.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +43,9 @@
 
 /* Begin PBXFileReference section */
 		672E503523CC87440041324A /* neodgm.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = neodgm.ttf; sourceTree = "<group>"; };
+		672E503723CDD7640041324A /* BpmAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BpmAnimationView.swift; sourceTree = "<group>"; };
+		675CEEC723D74C760068DEA8 /* PressStart2P-vaV7.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PressStart2P-vaV7.ttf"; sourceTree = "<group>"; };
+		675CEEC923D7516E0068DEA8 /* apple-iie-40.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "apple-iie-40.ttf"; sourceTree = "<group>"; };
 		6766866923C5CB1D006BA610 /* Bipi!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bipi!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6766866C23C5CB1D006BA610 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6766866E23C5CB1D006BA610 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +61,8 @@
 		6766868E23C5CB21006BA610 /* Bipi_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bipi_UITests.swift; sourceTree = "<group>"; };
 		6766869023C5CB21006BA610 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6766869C23C608C3006BA610 /* Tapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tapper.swift; sourceTree = "<group>"; };
+		67967FED23D99C4500926A01 /* PetMe128.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PetMe128.ttf; sourceTree = "<group>"; };
+		67967FEF23D99CDD00926A01 /* PetMe1282Y.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PetMe1282Y.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +93,10 @@
 		67563FDD23C983DE00B46E2F /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				675CEEC723D74C760068DEA8 /* PressStart2P-vaV7.ttf */,
+				67967FED23D99C4500926A01 /* PetMe128.ttf */,
+				67967FEF23D99CDD00926A01 /* PetMe1282Y.ttf */,
+				675CEEC923D7516E0068DEA8 /* apple-iie-40.ttf */,
 				672E503523CC87440041324A /* neodgm.ttf */,
 			);
 			path = fonts;
@@ -116,6 +130,7 @@
 				6766867023C5CB1D006BA610 /* ContentView.swift */,
 				67563FDD23C983DE00B46E2F /* fonts */,
 				6766869C23C608C3006BA610 /* Tapper.swift */,
+				672E503723CDD7640041324A /* BpmAnimationView.swift */,
 				6766867223C5CB21006BA610 /* Assets.xcassets */,
 				6766867723C5CB21006BA610 /* LaunchScreen.storyboard */,
 				6766867A23C5CB21006BA610 /* Info.plist */,
@@ -256,9 +271,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				672E503623CC87440041324A /* neodgm.ttf in Resources */,
+				67967FEE23D99C4500926A01 /* PetMe128.ttf in Resources */,
+				675CEECA23D7516E0068DEA8 /* apple-iie-40.ttf in Resources */,
+				67967FF023D99CDD00926A01 /* PetMe1282Y.ttf in Resources */,
 				6766867923C5CB21006BA610 /* LaunchScreen.storyboard in Resources */,
 				6766867623C5CB21006BA610 /* Preview Assets.xcassets in Resources */,
 				6766867323C5CB21006BA610 /* Assets.xcassets in Resources */,
+				675CEEC823D74C760068DEA8 /* PressStart2P-vaV7.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +326,7 @@
 				6766866F23C5CB1D006BA610 /* SceneDelegate.swift in Sources */,
 				6766867123C5CB1D006BA610 /* ContentView.swift in Sources */,
 				6766869D23C608C3006BA610 /* Tapper.swift in Sources */,
+				672E503823CDD7640041324A /* BpmAnimationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

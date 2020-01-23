@@ -23,6 +23,10 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>neodgm.ttf</string>
+		<string>apple-iie-40.ttf</string>
+		<string>PressStart2P-vaV7.ttf</string>
+		<string>PetMe128.ttf</string>
+		<string>PetMe1282Y.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
