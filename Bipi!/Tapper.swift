@@ -16,7 +16,7 @@ struct Tapper {
         let currentTime = NSDate().timeIntervalSince1970 * 1000
         let prevTime = cue.last ?? currentTime
 
-        guard (currentTime - prevTime) < 1000 else {
+        guard (currentTime - prevTime) < 4000 else {
             reset()
             cue.append(currentTime)
             return
@@ -40,5 +40,14 @@ struct Tapper {
         let twoDecimalBpm = (rawBpm * 100).rounded() / 100
 
         return twoDecimalBpm
+    }
+
+    var avgInterval: Double {
+        guard cue.count > 1 else {
+            return 0
+        }
+        let beats = cue.count - 1
+        let duration = cue.last! - cue.first!
+        return duration / Double(beats)
     }
 }

@@ -29,7 +29,7 @@ struct BpmAnimation_Previews: PreviewProvider {
     }
 
     struct PreviewWrapper: View {
-        @State var interval: Double = Double(1000)
+        @State var interval: Double = Double(0)
 
         var body: some View {
             BpmAnimationView(interval: $interval)
