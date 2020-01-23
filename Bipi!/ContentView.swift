@@ -12,11 +12,49 @@ var tapper = Tapper()
 
 enum CustomFonts {
     static let neoDunggeunmo = "NeoDunggeunmo"
+    static let petMe128 = "PetMe128"
+    static let appleIIe = "apple-iie-40"
+}
+
+enum Beat {
+    static let on = "●"
+    static let off = "○"
+}
+
+struct AppTitleView: View {
+    @Binding var interval: Double
+
+    var body: some View {
+        HStack {
+            Text("Bipi")
+                .font(.custom(CustomFonts.petMe128, size: 26))
+                .kerning(-8)
+                .bold()
+                .foregroundColor(.primary)
+            Text("!")
+                .font(.custom(CustomFonts.petMe128, size: 26))
+                .bold()
+                .foregroundColor(.primary)
+                .offset(x: -14)
+            Spacer()
+            BpmAnimationView(interval: self.$interval)
+        }.padding()
+    }
+}
+
+struct FooterView: View {
+    var body: some View {
+        HStack {
+            Spacer()
+            Text("© 2020 Hard Hard Software").font(.custom(CustomFonts.petMe128, size: 14))
+            Spacer()
+        }.padding()
+    }
 }
 
 struct ContentView: View {
-    @State var bpm = 0 as Double
-    @State var dragAmount = CGSize.zero
+    @State private var bpm = Double(0)
+    @State private var interval = Double(0)
 
     var body: some View {
         GeometryReader { geometry in
@@ -24,15 +62,22 @@ struct ContentView: View {
                 ZStack {
                     Rectangle()
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .foregroundColor(Color("Background"))
-                    Spacer()
-                    HStack(alignment: .firstTextBaseline) {
-                        Text(self.bpmIntStr)
-                            .font(.custom(CustomFonts.neoDunggeunmo, size: geometry.size.width * 0.40))
-                            .foregroundColor(.primary)
-                        Text(self.bpmDecimalStr)
-                            .font(.custom(CustomFonts.neoDunggeunmo, size: geometry.size.width * 0.20))
-                            .foregroundColor(.secondary)
+                        .foregroundColor(Color("background"))
+
+                    VStack {
+                        AppTitleView(interval: self.$interval)
+                        Spacer()
+                        HStack(alignment: .firstTextBaseline) {
+                            Text(self.bpmIntStr)
+                                .font(.custom(CustomFonts.petMe128, size: geometry.size.width * 0.22))
+                                .foregroundColor(.primary)
+                            Text(self.bpmDecimalStr)
+                                .font(.custom(CustomFonts.petMe128, size: geometry.size.width * 0.10))
+                                .foregroundColor(.secondary)
+                                .offset(x: -10, y: 0)
+                        }
+                        Spacer()
+                        FooterView()
                     }
                 }.gesture(TapGesture().onEnded {
                     _ in self.tap()
@@ -40,11 +85,6 @@ struct ContentView: View {
                     _ in self.reset()
                 })
             }
-            Text("Bipi!")
-                .font(.custom(CustomFonts.neoDunggeunmo, size: 36))
-                .bold()
-                .foregroundColor(.secondary)
-                .padding()
         }
     }
 
@@ -66,16 +106,18 @@ struct ContentView: View {
     func tap() {
         tapper.tap()
         bpm = tapper.bpm
+        interval = tapper.avgInterval
     }
 
     func reset() {
         tapper.reset()
         bpm = tapper.bpm
+        interval = tapper.avgInterval
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView().previewLayout(.fixed(width: 568, height: 320)).environment(\.colorScheme, .dark)
     }
 }
