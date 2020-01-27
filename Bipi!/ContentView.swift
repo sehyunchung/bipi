@@ -111,27 +111,23 @@ struct ContentView: View {
         String(bpm).components(separatedBy: ".")
     }
 
-    var bpmIntStr: String {
-        bpmStrings.first!
-    }
-
-    var bpmDecimalStr: String {
-        guard bpmStrings.last != "0" else {
-            return ""
-        }
-        return "." + bpmStrings.last!
+    func getBpmString(_ bpm: Double) {
+        let bpmStrings: [String] = String(bpm).components(separatedBy: ".")
+        bpmState.intStr = bpmStrings.first!
+        bpmState.decimalStr = bpmStrings.last != "0" ? "." + bpmStrings.last! : ""
     }
 
     func tap() {
         tapper.tap()
-        bpm = tapper.bpm
-        interval = tapper.avgInterval
+        getBpmString(tapper.bpm)
+        bpmState.interval = tapper.interval
     }
 
     func reset() {
         tapper.reset()
-        bpm = tapper.bpm
-        interval = tapper.avgInterval
+        getBpmString(tapper.bpm)
+        bpmState.interval = tapper.interval
+        bpmState.beat = true
     }
 }
 
