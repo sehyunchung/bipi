@@ -104,11 +104,13 @@ struct ContentView: View {
                     FooterView()
                 }
             }
-        }
-    }
-
-    var bpmStrings: [String] {
-        String(bpm).components(separatedBy: ".")
+            .onReceive(timer) { _ in self.bpmState.beat.toggle() }
+            .gesture(TapGesture().onEnded {
+                _ in self.tap()
+            }).gesture(DragGesture().onEnded {
+                _ in self.reset()
+            })
+        }.onAppear(perform: { () -> Void in () })
     }
 
     func getBpmString(_ bpm: Double) {
