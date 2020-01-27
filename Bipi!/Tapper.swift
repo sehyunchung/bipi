@@ -42,12 +42,12 @@ struct Tapper {
         return twoDecimalBpm
     }
 
-    var avgInterval: Double {
+    var interval: Double {
         guard cue.count > 1 else {
-            return 0
+            return 1000_000
         }
         let beats = cue.count - 1
         let duration = cue.last! - cue.first!
-        return duration / Double(beats)
+        return duration / Double(beats) / 1000
     }
 }
