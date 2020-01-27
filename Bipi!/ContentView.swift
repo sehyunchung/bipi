@@ -47,6 +47,18 @@ struct AppTitleView: View {
             Spacer()
             BpmAnimationView(interval: self.$interval)
         }.padding()
+
+struct BpmAnimationView: View {
+    @EnvironmentObject var bpmState: BpmState
+
+    var body: some View {
+        ZStack {
+            bpmState.intStr == "0" ? nil : HStack(alignment: .center) {
+                Text(bpmState.beat ? Beat.on : Beat.off).font(.custom(CustomFonts.petMe128, size: 28))
+                Spacer()
+                Text(bpmState.beat ? Beat.off : Beat.on).font(.custom(CustomFonts.petMe128, size: 28))
+            }
+        }
     }
 }
 
