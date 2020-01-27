@@ -135,6 +135,9 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().previewLayout(.fixed(width: 568, height: 320)).environment(\.colorScheme, .dark)
+        Group {
+            ContentView().environmentObject(BpmState()).previewLayout(.fixed(width: 568, height: 320)).environment(\.colorScheme, .dark)
+            ContentView().environmentObject(BpmState()).previewLayout(.fixed(width: 320, height: 568)).environment(\.colorScheme, .dark)
+        }
     }
 }
