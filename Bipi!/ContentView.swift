@@ -64,9 +64,9 @@ struct FooterView: View {
     var body: some View {
         HStack {
             Spacer()
-            Text("© 2020 Hard Hard Software").font(.custom(CustomFonts.petMe128, size: 14))
+            Text("© 2020 Pretty Hard Software").font(.custom(CustomFonts.petMe128, size: 12))
             Spacer()
-        }.padding()
+        }.padding([.bottom], 12)
     }
 }
 
