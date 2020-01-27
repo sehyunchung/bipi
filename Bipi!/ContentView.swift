@@ -12,9 +12,7 @@ import SwiftUI
 var tapper = Tapper()
 
 enum CustomFonts {
-    static let neoDunggeunmo = "NeoDunggeunmo"
     static let petMe128 = "PetMe128"
-    static let appleIIe = "apple-iie-40"
 }
 
 enum Beat {
@@ -30,23 +28,23 @@ final class BpmState: ObservableObject {
 }
 
 struct AppTitleView: View {
-    @Binding var interval: Double
+    @EnvironmentObject var bpmState: BpmState
 
     var body: some View {
-        HStack {
+        HStack(alignment: .center) {
             Text("Bipi")
-                .font(.custom(CustomFonts.petMe128, size: 26))
+                .font(.custom(CustomFonts.petMe128, size: 32))
                 .kerning(-8)
-                .bold()
                 .foregroundColor(.primary)
             Text("!")
-                .font(.custom(CustomFonts.petMe128, size: 26))
-                .bold()
+                .font(.custom(CustomFonts.petMe128, size: 32))
                 .foregroundColor(.primary)
                 .offset(x: -14)
-            Spacer()
-            BpmAnimationView(interval: self.$interval)
-        }.padding()
+                .animation(nil)
+                .rotationEffect(.degrees(bpmState.beat ? 0 : 10), anchor: .bottomLeading)
+        }
+    }
+}
 
 struct BpmAnimationView: View {
     @EnvironmentObject var bpmState: BpmState
@@ -73,37 +71,38 @@ struct FooterView: View {
 }
 
 struct ContentView: View {
-    @State private var bpm = Double(0)
-    @State private var interval = Double(0)
+    @EnvironmentObject var bpmState: BpmState
 
     var body: some View {
-        GeometryReader { geometry in
+        let timer = Timer.publish(every: bpmState.interval, on: .current, in: .common).autoconnect()
+        return GeometryReader { geometry in
             ZStack {
-                ZStack {
-                    Rectangle()
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .foregroundColor(Color("background"))
+                Rectangle()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .foregroundColor(Color("background"))
 
-                    VStack {
-                        AppTitleView(interval: self.$interval)
-                        Spacer()
-                        HStack(alignment: .firstTextBaseline) {
-                            Text(self.bpmIntStr)
-                                .font(.custom(CustomFonts.petMe128, size: geometry.size.width * 0.22))
-                                .foregroundColor(.primary)
-                            Text(self.bpmDecimalStr)
-                                .font(.custom(CustomFonts.petMe128, size: geometry.size.width * 0.10))
-                                .foregroundColor(.secondary)
-                                .offset(x: -10, y: 0)
-                        }
-                        Spacer()
-                        FooterView()
-                    }
-                }.gesture(TapGesture().onEnded {
-                    _ in self.tap()
-                }).gesture(DragGesture().onEnded {
-                    _ in self.reset()
-                })
+                VStack {
+                    ZStack(alignment: .center) {
+                        BpmAnimationView()
+                        AppTitleView().offset(x: 10)
+                    }.padding()
+
+                    Spacer()
+
+                    HStack(alignment: .firstTextBaseline) {
+                        Text(self.bpmState.intStr)
+                            .font(.custom(CustomFonts.petMe128, size: geometry.size.width * 0.22))
+                            .foregroundColor(.primary)
+                        Text(self.bpmState.decimalStr)
+                            .font(.custom(CustomFonts.petMe128, size: geometry.size.width * 0.10))
+                            .foregroundColor(.secondary)
+                            .offset(x: -10, y: 0)
+                    }.offset(x: 4, y: 10)
+
+                    Spacer()
+
+                    FooterView()
+                }
             }
         }
     }
