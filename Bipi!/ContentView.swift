@@ -52,9 +52,11 @@ struct BpmAnimationView: View {
     var body: some View {
         ZStack {
             bpmState.intStr == "0" ? nil : HStack(alignment: .center) {
-                Text(bpmState.beat ? Beat.on : Beat.off).font(.custom(CustomFonts.petMe128, size: 28))
+                Text(bpmState.beat ? Beat.on : Beat.off)
+                    .font(.custom(CustomFonts.petMe128, size: 28))
                 Spacer()
-                Text(bpmState.beat ? Beat.off : Beat.on).font(.custom(CustomFonts.petMe128, size: 28))
+                Text(bpmState.beat ? Beat.off : Beat.on)
+                    .font(.custom(CustomFonts.petMe128, size: 28))
             }
         }
     }
@@ -104,7 +106,9 @@ struct ContentView: View {
                     FooterView()
                 }
             }
-            .onReceive(timer) { _ in self.bpmState.beat.toggle() }
+            .onReceive(timer) {
+                _ in self.bpmState.beat.toggle()
+            }
             .gesture(TapGesture().onEnded {
                 _ in self.tap()
             }).gesture(DragGesture().onEnded {
@@ -136,8 +140,14 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ContentView().environmentObject(BpmState()).previewLayout(.fixed(width: 568, height: 320)).environment(\.colorScheme, .dark)
-            ContentView().environmentObject(BpmState()).previewLayout(.fixed(width: 320, height: 568)).environment(\.colorScheme, .dark)
+            ContentView()
+                .environmentObject(BpmState())
+                .previewLayout(.fixed(width: 568, height: 320))
+                .environment(\.colorScheme, .dark)
+            ContentView()
+                .environmentObject(BpmState())
+                .previewLayout(.fixed(width: 320, height: 568))
+                .environment(\.colorScheme, .dark)
         }
     }
 }

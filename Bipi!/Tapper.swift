@@ -44,7 +44,7 @@ struct Tapper {
 
     var interval: Double {
         guard cue.count > 1 else {
-            return 1000_000
+            return 1_000_000
         }
         let beats = cue.count - 1
         let duration = cue.last! - cue.first!
