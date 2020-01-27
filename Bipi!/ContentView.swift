@@ -6,6 +6,7 @@
 //  Copyright © 2020 Sehyun Chung. All rights reserved.
 //
 
+import Combine
 import SwiftUI
 
 var tapper = Tapper()
@@ -17,8 +18,15 @@ enum CustomFonts {
 }
 
 enum Beat {
-    static let on = "●"
-    static let off = "○"
+    static let on = "+"
+    static let off = ""
+}
+
+final class BpmState: ObservableObject {
+    @Published var interval: Double = 100_000
+    @Published var intStr: String = "0"
+    @Published var decimalStr: String = ""
+    @Published var beat: Bool = true
 }
 
 struct AppTitleView: View {
