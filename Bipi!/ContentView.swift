@@ -39,7 +39,7 @@ struct AppTitleView: View {
             Text("!")
                 .font(.custom(CustomFonts.petMe128, size: 32))
                 .foregroundColor(.primary)
-                .offset(x: -14)
+                .offset(x: -16)
                 .animation(nil)
                 .rotationEffect(.degrees(bpmState.beat ? 0 : 10), anchor: .bottomLeading)
         }
