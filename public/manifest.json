@@ -17,7 +17,7 @@
             "sizes": "512x512"
         }
     ],
-    "start_url": "bipi.me",
+    "start_url": "/",
     "display": "standalone",
     "theme_color": "hsl(0, 0%, 64%)",
     "background_color": "hsl(0, 0%, 64%)",
