@@ -4,7 +4,7 @@ const BPM_SECONDARY_TEXT: string = 'hsl(0, 0%, 60%)'
 const HEADER_TEXT: string = 'hsl(0, 0%, 100%)'
 const FOOTER_TEXT: string = 'hsl(0, 0%, 14%)'
 
-const FAMILY: string = `PetMe128, Meno, Inconsolata, Monaco, Consolas,
+const FAMILY: string = `'Pet Me 128', Menlo, Inconsolata, Monaco, Consolas,
     'Courier New', Courier, monospace`
 
 export default {

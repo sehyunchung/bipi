@@ -17,7 +17,6 @@ const bpmStyle = css`
 `
 const bpmTextStyle = css`
   font-size: 24vw;
-  font-weight: 500;
   font-family: ${STYLE.FONT.FAMILY};
   color: ${STYLE.COLOR.BPM_PRIMARY_TEXT};
   margin-top: -4.4vh;

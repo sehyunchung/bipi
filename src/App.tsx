@@ -9,10 +9,6 @@ import Footer from './components/Footer'
 import { STYLE } from './constants'
 
 const globalStyle = css`
-  @font-face {
-    font-family: 'PetMe128';
-    src: local('PerMe128'), url(./fonts/PetMe128.ttf) format('trutype');
-  }
   body {
     overflow: hidden;
     margin: 0;
