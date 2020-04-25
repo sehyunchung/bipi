@@ -9,13 +9,14 @@ const bpmStyle = css`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 4vw;
   width: 100%;
   height: 100%;
   user-select: none;
   text-align: center;
 `
 const bpmTextStyle = css`
-  font-size: 40vw;
+  font-size: 24vw;
   font-weight: 500;
   font-family: ${STYLE.FONT.FAMILY};
   color: ${STYLE.COLOR.BPM_PRIMARY_TEXT};
@@ -61,13 +62,13 @@ const Bpm: React.FC = () => {
 
   const handleClick = () => {
     tap()
-    toggle(on => !on)
+    toggle((on) => !on)
   }
 
   useEffect(() => {
     const id = setTimeout(() => {
       resetBpm()
-      toggle(on => !on)
+      toggle((on) => !on)
     }, TAPPER.TIME_OUT)
     return () => {
       clearTimeout(id)
@@ -85,7 +86,7 @@ const Bpm: React.FC = () => {
               range: [0, 0.5, 1],
               output: [1, 1.1, 1],
             })
-            .interpolate(x => `scale(${x})`),
+            .interpolate((x) => `scale(${x})`),
         }}
       >
         <span css={bpmTextStyle}>

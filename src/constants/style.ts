@@ -1,12 +1,19 @@
-const BACKGROUND: string = 'hsl(0, 0%, 64%)'
-const BPM_PRIMARY_TEXT: string = 'hsl(0, 0%, 86%)'
-const BPM_SECONDARY_TEXT: string = 'hsl(0, 0%, 76%)'
-const FOOTER_TEXT: string = 'hsl(0, 0%, 72%)'
+const BACKGROUND: string = 'hsl(0, 0%, 2%)'
+const BPM_PRIMARY_TEXT: string = 'hsl(0, 0%, 96%)'
+const BPM_SECONDARY_TEXT: string = 'hsl(0, 0%, 60%)'
+const HEADER_TEXT: string = 'hsl(0, 0%, 100%)'
+const FOOTER_TEXT: string = 'hsl(0, 0%, 14%)'
 
-const FAMILY: string = `'IBM Plex Mono', Menlo, Inconsolata, Monaco, Consolas,
+const FAMILY: string = `PetMe128, Meno, Inconsolata, Monaco, Consolas,
     'Courier New', Courier, monospace`
 
 export default {
-  COLOR: { BACKGROUND, BPM_PRIMARY_TEXT, BPM_SECONDARY_TEXT, FOOTER_TEXT },
+  COLOR: {
+    BACKGROUND,
+    BPM_PRIMARY_TEXT,
+    BPM_SECONDARY_TEXT,
+    HEADER_TEXT,
+    FOOTER_TEXT,
+  },
   FONT: { FAMILY },
 }
