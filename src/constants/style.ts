@@ -3,7 +3,7 @@ const BPM_PRIMARY_TEXT: string = 'hsl(0, 0%, 86%)'
 const BPM_SECONDARY_TEXT: string = 'hsl(0, 0%, 76%)'
 const FOOTER_TEXT: string = 'hsl(0, 0%, 72%)'
 
-const FAMILY: string = `'IBM Plex Mono', Menlo, Inconsolata, Monaco, Consolas,
+const FAMILY: string = `PetMe128, Meno, Inconsolata, Monaco, Consolas,
     'Courier New', Courier, monospace`
 
 export default {
