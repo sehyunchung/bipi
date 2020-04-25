@@ -2,6 +2,7 @@
 import React from 'react'
 import { Global, css, jsx } from '@emotion/core'
 
+import Header from './components/Header'
 import Bpm from './components/Bpm'
 import Footer from './components/Footer'
 
@@ -30,6 +31,7 @@ const App: React.FC = () => {
   return (
     <div css={appStyle} className="App">
       <Global styles={globalStyle} />
+      <Header />
       <Bpm />
       <Footer />
     </div>
