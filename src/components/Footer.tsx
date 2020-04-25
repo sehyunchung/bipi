@@ -4,10 +4,10 @@ import { STYLE } from '../constants'
 
 const footerStyle = css`
   position: absolute;
-  bottom: 16px;
-  right: 20px;
+  bottom: 1rem;
+  right: 1rem;
   font-family: ${STYLE.FONT.FAMILY};
-  font-size: 12px;
+  font-size: 0.8rem;
   color: ${STYLE.COLOR.FOOTER_TEXT};
   a {
     color: ${STYLE.COLOR.FOOTER_TEXT};

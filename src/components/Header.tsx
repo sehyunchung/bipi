@@ -4,21 +4,13 @@ import { STYLE } from '../constants'
 
 const headerStyle = css`
   position: absolute;
-  top: 16p;
+  top: 0.5rem;
   left: 50%;
   transform: translateX(-50%);
   font-family: ${STYLE.FONT.FAMILY};
-  font-size: 4vw;
-  letter-spacing: -1vw;
+  font-size: 2rem;
+  letter-spacing: -0.5rem;
   color: ${STYLE.COLOR.HEADER_TEXT};
-  a {
-    color: ${STYLE.COLOR.HEADER_TEXT};
-    text-decoration: none;
-    cursor: pointer;
-    &:hover {
-      color: ${STYLE.COLOR.BPM_SECONDARY_TEXT};
-    }
-  }
 `
 export default function Header() {
   return <h1 css={headerStyle}>Bipi!</h1>

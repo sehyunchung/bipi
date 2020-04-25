@@ -9,7 +9,6 @@ const bpmStyle = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 4vw;
   width: 100%;
   height: 100%;
   user-select: none;
@@ -19,11 +18,12 @@ const bpmTextStyle = css`
   font-size: 24vw;
   font-family: ${STYLE.FONT.FAMILY};
   color: ${STYLE.COLOR.BPM_PRIMARY_TEXT};
-  margin-top: -4.4vh;
+  transform: translateY(16%);
   display: block;
 `
 
 const bpmDecimalTextStyle = css`
+  display: inline-block;
   margin-left: -3.2vw;
   padding-right: 2vw;
   font-weight: 400;
