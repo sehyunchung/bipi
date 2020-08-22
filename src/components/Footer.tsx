@@ -1,20 +1,20 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
-import { STYLE } from '../constants'
+import { BPM_SECONDARY_TEXT_COLOR, FONT_FAMILY, FOOTER_TEXT_COLOR } from '../constants'
 
 const footerStyle = css`
   position: absolute;
   bottom: 1rem;
   right: 1rem;
-  font-family: ${STYLE.FONT.FAMILY};
+  font-family: ${FONT_FAMILY};
   font-size: 0.8rem;
-  color: ${STYLE.COLOR.FOOTER_TEXT};
+  color: ${FOOTER_TEXT_COLOR};
   a {
-    color: ${STYLE.COLOR.FOOTER_TEXT};
+    color: ${FOOTER_TEXT_COLOR};
     text-decoration: none;
     cursor: pointer;
     &:hover {
-      color: ${STYLE.COLOR.BPM_SECONDARY_TEXT};
+      color: ${BPM_SECONDARY_TEXT_COLOR};
     }
   }
 `

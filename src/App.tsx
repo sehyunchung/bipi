@@ -6,14 +6,14 @@ import Header from './components/Header'
 import Bpm from './components/Bpm'
 import Footer from './components/Footer'
 
-import { STYLE } from './constants'
+import { BACKGROUND_COLOR } from './constants'
 
 const globalStyle = css`
   body {
     overflow: hidden;
     margin: 0;
     padding: 0;
-    background-color: ${STYLE.COLOR.BACKGROUND};
+    background-color: ${BACKGROUND_COLOR};
   }
 `
 

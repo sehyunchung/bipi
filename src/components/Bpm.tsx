@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { css, jsx } from '@emotion/core'
 import { useSpring, animated } from 'react-spring'
 import { Tapper } from '../core/tapper'
-import { STYLE, TAPPER } from '../constants'
+import { BPM_PRIMARY_TEXT_COLOR, BPM_SECONDARY_TEXT_COLOR, FONT_FAMILY, BPM_TIMEOUT } from '../constants'
 
 const bpmStyle = css`
   display: flex;
@@ -16,8 +16,8 @@ const bpmStyle = css`
 `
 const bpmTextStyle = css`
   font-size: 24vw;
-  font-family: ${STYLE.FONT.FAMILY};
-  color: ${STYLE.COLOR.BPM_PRIMARY_TEXT};
+  font-family: ${FONT_FAMILY};
+  color: ${BPM_PRIMARY_TEXT_COLOR};
   transform: translateY(16%);
   display: block;
 `
@@ -29,7 +29,7 @@ const bpmDecimalTextStyle = css`
   font-weight: 400;
   font-size: 0.5em;
   letter-spacing: -2.4vw;
-  color: ${STYLE.COLOR.BPM_SECONDARY_TEXT};
+  color: ${BPM_SECONDARY_TEXT_COLOR};
 `
 
 const tapper = Tapper.new()
@@ -68,7 +68,7 @@ const Bpm: React.FC = () => {
     const id = setTimeout(() => {
       resetBpm()
       toggle((on) => !on)
-    }, TAPPER.TIME_OUT)
+    }, BPM_TIMEOUT)
     return () => {
       clearTimeout(id)
     }
