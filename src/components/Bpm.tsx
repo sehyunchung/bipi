@@ -1,100 +1,107 @@
-/** @jsx jsx */
-import React, { useEffect, useState } from 'react'
-import { css, jsx } from '@emotion/core'
-import { useSpring, animated } from 'react-spring'
-import { Tapper } from '../core/tapper'
-import { BPM_PRIMARY_TEXT_COLOR, BPM_SECONDARY_TEXT_COLOR, FONT_FAMILY, BPM_TIMEOUT } from '../constants'
+import React, { useEffect, useState } from "react";
+import { View, Text, StyleSheet, Pressable, ViewProps } from "react-native";
+import { useSpring, animated } from "react-spring";
 
-const bpmStyle = css`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  user-select: none;
-  text-align: center;
-`
-const bpmTextStyle = css`
-  font-size: 24vw;
-  font-family: ${FONT_FAMILY};
-  color: ${BPM_PRIMARY_TEXT_COLOR};
-  transform: translateY(16%);
-  display: block;
-`
+import { Tapper } from "../core/tapper";
 
-const bpmDecimalTextStyle = css`
-  display: inline-block;
-  margin-left: -3.2vw;
-  padding-right: 2vw;
-  font-weight: 400;
-  font-size: 0.5em;
-  letter-spacing: -2.4vw;
-  color: ${BPM_SECONDARY_TEXT_COLOR};
-`
+import {
+  BPM_PRIMARY_TEXT_COLOR,
+  BPM_SECONDARY_TEXT_COLOR,
+  FONT_FAMILY,
+  BPM_TIMEOUT,
+} from "../constants";
 
-const tapper = Tapper.new()
+const AnimatedView = animated<React.ElementType<ViewProps>>(View);
+
+const bpmStyle = StyleSheet.create({
+  bpm: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    height: "100%",
+    textAlign: "center",
+  },
+  bpmText: {
+    fontSize: 120,
+    fontFamily: FONT_FAMILY,
+    color: BPM_PRIMARY_TEXT_COLOR,
+  },
+  decimal: {
+    color: BPM_SECONDARY_TEXT_COLOR,
+  },
+});
+
+const tapper = Tapper.new();
 
 const useTapper = () => {
-  const [bpm, setBpm] = useState(0)
+  const [bpm, setBpm] = useState(0);
 
   const tap = () => {
-    tapper.tap()
-    if (tapper.bpm) setBpm(tapper.bpm)
-  }
+    tapper.tap();
+    if (tapper.bpm) setBpm(tapper.bpm);
+  };
 
   const resetBpm = () => {
-    tapper.reset()
-    setBpm(tapper.bpm)
-  }
+    tapper.reset();
+    setBpm(tapper.bpm);
+  };
 
-  return { bpm, tap, resetBpm }
-}
+  return { bpm, tap, resetBpm };
+};
 
-const Bpm: React.FC = () => {
-  const { bpm, tap, resetBpm } = useTapper()
-  const [on, toggle] = useState(true)
-  const { x } = useSpring({
+export default function Bpm() {
+  const { bpm, tap, resetBpm } = useTapper();
+  const [on, toggle] = useState(true);
+
+  const { x } = useSpring<{ x: number }>({
     from: { x: 0 },
     x: on ? 1 : 0,
     config: { duration: 20 },
-  })
+  });
 
-  const handleClick = () => {
-    tap()
-    toggle((on) => !on)
-  }
-
-  useEffect(() => {
-    const id = setTimeout(() => {
-      resetBpm()
-      toggle((on) => !on)
-    }, BPM_TIMEOUT)
-    return () => {
-      clearTimeout(id)
-    }
-  }, [bpm, resetBpm])
-
-  const decimal = Math.floor((bpm - Math.floor(bpm)) * 10)
-
-  return (
-    <div css={bpmStyle} onClick={handleClick}>
-      <animated.div
-        style={{
-          transform: x
+  const animated = StyleSheet.create({
+    bpm: {
+      transform: [
+        {
+          scale: x
             .interpolate({
               range: [0, 0.5, 1],
               output: [1, 1.1, 1],
             })
-            .interpolate((x) => `scale(${x})`),
-        }}
-      >
-        <span css={bpmTextStyle}>
-          {Math.floor(bpm)}
-          {bpm ? <span css={bpmDecimalTextStyle}>.{decimal}</span> : ''}
-        </span>
-      </animated.div>
-    </div>
-  )
-}
+            .interpolate((x) => x),
+        },
+      ],
+    },
+  });
 
-export default Bpm
+  const handleClick = () => {
+    tap();
+    toggle((on) => !on);
+  };
+
+  useEffect(() => {
+    const id = setTimeout(() => {
+      resetBpm();
+      toggle((on) => !on);
+    }, BPM_TIMEOUT);
+    return () => {
+      clearTimeout(id);
+    };
+  }, [bpm, resetBpm]);
+
+  const decimal = Math.floor((bpm - Math.floor(bpm)) * 10);
+
+  return (
+    <Pressable onPress={handleClick}>
+      <View style={bpmStyle.bpm}>
+        <AnimatedView style={animated.bpm}>
+          <Text style={bpmStyle.bpmText}>
+            {Math.floor(bpm)}
+            {bpm ? <Text style={bpmStyle.decimal}>.{decimal}</Text> : ""}
+          </Text>
+        </AnimatedView>
+      </View>
+    </Pressable>
+  );
+}

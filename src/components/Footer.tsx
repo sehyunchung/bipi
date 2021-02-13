@@ -1,33 +1,33 @@
-/** @jsx jsx */
-import { css, jsx } from '@emotion/core'
-import { BPM_SECONDARY_TEXT_COLOR, FONT_FAMILY, FOOTER_TEXT_COLOR } from '../constants'
+import React from "react";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 
-const footerStyle = css`
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  font-family: ${FONT_FAMILY};
-  font-size: 0.8rem;
-  color: ${FOOTER_TEXT_COLOR};
-  a {
-    color: ${FOOTER_TEXT_COLOR};
-    text-decoration: none;
-    cursor: pointer;
-    &:hover {
-      color: ${BPM_SECONDARY_TEXT_COLOR};
-    }
-  }
-`
+import {
+  BPM_SECONDARY_TEXT_COLOR,
+  FONT_FAMILY,
+  FOOTER_TEXT_COLOR,
+} from "../constants";
+
+const footerStyle = StyleSheet.create({
+  footer: {
+    position: "absolute",
+    bottom: 16,
+    right: 16,
+    fontFamily: FONT_FAMILY,
+    fontSize: 12,
+    color: FOOTER_TEXT_COLOR,
+  },
+});
+
 export default function Footer() {
   return (
-    <footer css={footerStyle}>
-      <a
-        href="https://github.com/sehyunchung/bipi"
-        target="_blank"
-        rel="noopener noreferrer"
+    <View style={footerStyle.footer}>
+      <Pressable
+        onPress={(e) => {
+          console.log(e);
+        }}
       >
-        made with ♥ by sehyunchung
-      </a>
-    </footer>
-  )
+        <Text>made with ♥ by sehyunchung</Text>
+      </Pressable>
+    </View>
+  );
 }

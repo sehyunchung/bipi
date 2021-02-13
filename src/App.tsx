@@ -1,37 +1,25 @@
-/** @jsx jsx */
-import React from 'react'
-import { Global, css, jsx } from '@emotion/core'
+import React from "react";
+import { View, StyleSheet } from "react-native";
+import Header from "./components/Header";
+import Bpm from "./components/Bpm";
+import Footer from "./components/Footer";
 
-import Header from './components/Header'
-import Bpm from './components/Bpm'
-import Footer from './components/Footer'
+import { BACKGROUND_COLOR } from "./constants";
 
-import { BACKGROUND_COLOR } from './constants'
+const appStyle = StyleSheet.create({
+  app: {
+    position: "relative",
+    height: "100vh",
+    width: "100vw",
+  },
+});
 
-const globalStyle = css`
-  body {
-    overflow: hidden;
-    margin: 0;
-    padding: 0;
-    background-color: ${BACKGROUND_COLOR};
-  }
-`
-
-const appStyle = css`
-  position: relative;
-  height: 100vh;
-  width: 100vw;
-`
-
-const App: React.FC = () => {
+export default function App() {
   return (
-    <div css={appStyle} className="App">
-      <Global styles={globalStyle} />
+    <View style={appStyle.app}>
       <Header />
       <Bpm />
       <Footer />
-    </div>
-  )
+    </View>
+  );
 }
-
-export default App
