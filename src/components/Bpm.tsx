@@ -4,8 +4,6 @@ import { useSpring, animated } from "react-spring";
 import { useAtom } from "jotai";
 import GestureRecognizer from "react-native-swipe-gestures";
 
-console.log(GestureRecognizer);
-
 import {
   Tapper,
   BPM_PRIMARY_TEXT_COLOR,
@@ -17,7 +15,7 @@ import {
 
 const AnimatedView = animated<React.ElementType<ViewProps>>(View);
 
-const tapper = Tapper.new();
+const tapper = new Tapper();
 
 const useTapper = () => {
   const [bpm, setBpm] = useState(0);

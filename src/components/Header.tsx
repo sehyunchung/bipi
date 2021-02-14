@@ -14,16 +14,16 @@ const style = StyleSheet.create({
   },
   title: {
     fontFamily: FONT_FAMILY,
-    fontSize: 24,
-    letterSpacing: -8,
+    fontSize: 18,
+    letterSpacing: -6,
     color: HEADER_TEXT_COLOR,
   },
   exclamation: {
     fontFamily: FONT_FAMILY,
-    fontSize: 24,
-    letterSpacing: -8,
+    fontSize: 18,
+    letterSpacing: -6,
     color: HEADER_TEXT_COLOR,
-    transform: [{ translateX: -7 }],
+    transform: [{ translateX: -4 }],
   },
 });
 
