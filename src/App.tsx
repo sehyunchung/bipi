@@ -1,37 +1,46 @@
-/** @jsx jsx */
-import React from 'react'
-import { Global, css, jsx } from '@emotion/core'
+import React from "react";
+import { View, StyleSheet, Dimensions, LayoutChangeEvent } from "react-native";
+import { Provider, useAtom } from "jotai";
 
-import Header from './components/Header'
-import Bpm from './components/Bpm'
-import Footer from './components/Footer'
+import Header from "./components/Header";
+import Bpm from "./components/Bpm";
+import Footer from "./components/Footer";
 
-import { BACKGROUND_COLOR } from './constants'
+import { BACKGROUND_COLOR, dimensionsAtom } from "./internal";
 
-const globalStyle = css`
-  body {
-    overflow: hidden;
-    margin: 0;
-    padding: 0;
-    background-color: ${BACKGROUND_COLOR};
-  }
-`
+const appStyle = StyleSheet.create({
+  app: {
+    position: "relative",
+    height: "100vh",
+    width: "100vw",
+    backgroundColor: BACKGROUND_COLOR,
+  },
+});
 
-const appStyle = css`
-  position: relative;
-  height: 100vh;
-  width: 100vw;
-`
+function Bipi() {
+  const [, setDimensions] = useAtom(dimensionsAtom);
+  const handleLayout = (e: LayoutChangeEvent) => {
+    const {
+      nativeEvent: {
+        layout: { width, height },
+      },
+    } = e;
+    setDimensions({ width, height });
+  };
 
-const App: React.FC = () => {
   return (
-    <div css={appStyle} className="App">
-      <Global styles={globalStyle} />
+    <View style={appStyle.app} onLayout={handleLayout}>
       <Header />
       <Bpm />
       <Footer />
-    </div>
-  )
+    </View>
+  );
 }
 
-export default App
+export default function App() {
+  return (
+    <Provider>
+      <Bipi />
+    </Provider>
+  );
+}

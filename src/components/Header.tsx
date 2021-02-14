@@ -1,17 +1,41 @@
-/** @jsx jsx */
-import { css, jsx } from '@emotion/core'
-import { FONT_FAMILY, HEADER_TEXT_COLOR } from '../constants'
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
 
-const headerStyle = css`
-  position: absolute;
-  top: 0.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: ${FONT_FAMILY};
-  font-size: 2rem;
-  letter-spacing: -0.5rem;
-  color: ${HEADER_TEXT_COLOR};
-`
+import { FONT_FAMILY, HEADER_TEXT_COLOR } from "../internal";
+
+const style = StyleSheet.create({
+  header: {
+    position: "absolute",
+    display: "flex",
+    flexDirection: "row",
+    top: 10,
+    left: 10,
+    width: 200,
+  },
+  title: {
+    fontFamily: FONT_FAMILY,
+    fontSize: 24,
+    letterSpacing: -8,
+    color: HEADER_TEXT_COLOR,
+  },
+  exclamation: {
+    fontFamily: FONT_FAMILY,
+    fontSize: 24,
+    letterSpacing: -8,
+    color: HEADER_TEXT_COLOR,
+    transform: [{ translateX: -7 }],
+  },
+});
+
 export default function Header() {
-  return <h1 css={headerStyle}>Bipi!</h1>
+  return (
+    <View style={style.header}>
+      <Text style={style.title} selectable={false}>
+        Bipi
+      </Text>
+      <Text style={style.exclamation} selectable={false}>
+        !
+      </Text>
+    </View>
+  );
 }
