@@ -1,6 +1,7 @@
 import React, { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { View, Text, StyleSheet, Pressable, ViewProps } from "react-native";
-import { useSpring, animated } from "react-spring";
+import { useSpring, animated } from "react-spring/native";
+
 import { useAtom } from "jotai";
 import GestureRecognizer from "react-native-swipe-gestures";
 
@@ -35,7 +36,7 @@ const useTapper = () => {
 
 export default function Bpm() {
   const { bpm, tap, resetBpm } = useTapper();
-  const [on, toggle] = useState(true);
+  const [on, toggle] = useState(false);
   const [dimension] = useAtom(dimensionsAtom);
 
   const bpmStyle = useMemo(() => {
@@ -61,37 +62,22 @@ export default function Bpm() {
     });
   }, [dimension]);
 
-  const { x } = useSpring<{ x: number }>({
-    from: { x: 0 },
-    x: on ? 1 : 0,
-    config: { duration: 20 },
-  });
-
-  const animated = StyleSheet.create({
-    bpm: {
-      transform: [
-        {
-          scale: x
-            .interpolate({
-              range: [0, 0.5, 1],
-              output: [1, 1.1, 1],
-            })
-            .interpolate((x) => x),
-        },
-      ],
+  const animation = useSpring({
+    opacity: on ? 0 : 1,
+    config: {
+      tension: 500,
     },
   });
 
   const handleClick = () => {
     tap();
-    toggle((on) => !on);
   };
 
   useEffect(() => {
     const id = setTimeout(() => {
       resetBpm();
-      toggle((on) => !on);
     }, BPM_TIMEOUT);
+
     return () => {
       clearTimeout(id);
     };
@@ -101,15 +87,23 @@ export default function Bpm() {
 
   return (
     <GestureRecognizer onSwipe={() => resetBpm()}>
-      <Pressable onPress={handleClick}>
-        <View style={bpmStyle.bpm}>
-          <AnimatedView style={animated.bpm}>
+      <Pressable
+        onPress={handleClick}
+        onPressIn={() => {
+          toggle(true);
+        }}
+        onPressOut={() => {
+          toggle(false);
+        }}
+      >
+        <AnimatedView style={animation}>
+          <View style={bpmStyle.bpm}>
             <Text style={bpmStyle.bpmText} selectable={false}>
               {Math.floor(bpm)}
               {bpm ? <Text style={bpmStyle.decimal}>.{decimal}</Text> : ""}
             </Text>
-          </AnimatedView>
-        </View>
+          </View>
+        </AnimatedView>
       </Pressable>
     </GestureRecognizer>
   );
