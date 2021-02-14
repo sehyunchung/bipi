@@ -1,5 +1,5 @@
-import React from "react";
-import { View, StyleSheet, Dimensions, LayoutChangeEvent } from "react-native";
+import React, { useEffect, useLayoutEffect } from "react";
+import { View, StyleSheet, Dimensions, ScaledSize } from "react-native";
 import { Provider, useAtom } from "jotai";
 
 import Header from "./components/Header";
@@ -8,28 +8,33 @@ import Footer from "./components/Footer";
 
 import { BACKGROUND_COLOR, dimensionsAtom } from "./internal";
 
-const appStyle = StyleSheet.create({
-  app: {
-    position: "relative",
-    height: "100vh",
-    width: "100vw",
-    backgroundColor: BACKGROUND_COLOR,
-  },
-});
-
 function Bipi() {
-  const [, setDimensions] = useAtom(dimensionsAtom);
-  const handleLayout = (e: LayoutChangeEvent) => {
-    const {
-      nativeEvent: {
-        layout: { width, height },
-      },
-    } = e;
-    setDimensions({ width, height });
-  };
+  const [dimensions, setDimensions] = useAtom(dimensionsAtom);
+
+  const appStyle = StyleSheet.create({
+    app: {
+      position: "absolute",
+      height: dimensions.height,
+      backgroundColor: BACKGROUND_COLOR,
+    },
+  });
+
+  useLayoutEffect(() => {
+    const { width, height } = Dimensions.get("window");
+    setDimensions(() => ({ width, height }));
+
+    const listener = ({ window }: { window: ScaledSize }) => {
+      setDimensions(() => ({ height: window.height, width: window.width }));
+    };
+    Dimensions.addEventListener("change", listener);
+
+    return () => {
+      Dimensions.removeEventListener("change", listener);
+    };
+  }, []);
 
   return (
-    <View style={appStyle.app} onLayout={handleLayout}>
+    <View style={appStyle.app}>
       <Header />
       <Bpm />
       <Footer />
