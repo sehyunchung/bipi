@@ -5,7 +5,7 @@ import {
   BPM_SECONDARY_TEXT_COLOR,
   FONT_FAMILY,
   FOOTER_TEXT_COLOR,
-} from "../constants";
+} from "../internal";
 
 const footerStyle = StyleSheet.create({
   footer: {
@@ -26,7 +26,7 @@ export default function Footer() {
           console.log(e);
         }}
       >
-        <Text>made with ♥ by sehyunchung</Text>
+        <Text selectable={false}>made with ♥ by sehyunchung</Text>
       </Pressable>
     </View>
   );

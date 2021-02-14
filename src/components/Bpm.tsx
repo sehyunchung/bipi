@@ -1,36 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { View, Text, StyleSheet, Pressable, ViewProps } from "react-native";
 import { useSpring, animated } from "react-spring";
+import { useAtom } from "jotai";
+import GestureRecognizer from "react-native-swipe-gestures";
 
-import { Tapper } from "../core/tapper";
+console.log(GestureRecognizer);
 
 import {
+  Tapper,
   BPM_PRIMARY_TEXT_COLOR,
   BPM_SECONDARY_TEXT_COLOR,
   FONT_FAMILY,
   BPM_TIMEOUT,
-} from "../constants";
+  dimensionsAtom,
+} from "../internal";
 
 const AnimatedView = animated<React.ElementType<ViewProps>>(View);
-
-const bpmStyle = StyleSheet.create({
-  bpm: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-    height: "100%",
-    textAlign: "center",
-  },
-  bpmText: {
-    fontSize: 120,
-    fontFamily: FONT_FAMILY,
-    color: BPM_PRIMARY_TEXT_COLOR,
-  },
-  decimal: {
-    color: BPM_SECONDARY_TEXT_COLOR,
-  },
-});
 
 const tapper = Tapper.new();
 
@@ -53,6 +38,30 @@ const useTapper = () => {
 export default function Bpm() {
   const { bpm, tap, resetBpm } = useTapper();
   const [on, toggle] = useState(true);
+  const [dimension] = useAtom(dimensionsAtom);
+
+  const bpmStyle = useMemo(() => {
+    const { width, height } = dimension;
+
+    return StyleSheet.create({
+      bpm: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width,
+        height,
+        textAlign: "center",
+      },
+      bpmText: {
+        fontSize: (width - 20) / 5,
+        fontFamily: FONT_FAMILY,
+        color: BPM_PRIMARY_TEXT_COLOR,
+      },
+      decimal: {
+        color: BPM_SECONDARY_TEXT_COLOR,
+      },
+    });
+  }, [dimension]);
 
   const { x } = useSpring<{ x: number }>({
     from: { x: 0 },
@@ -93,15 +102,17 @@ export default function Bpm() {
   const decimal = Math.floor((bpm - Math.floor(bpm)) * 10);
 
   return (
-    <Pressable onPress={handleClick}>
-      <View style={bpmStyle.bpm}>
-        <AnimatedView style={animated.bpm}>
-          <Text style={bpmStyle.bpmText}>
-            {Math.floor(bpm)}
-            {bpm ? <Text style={bpmStyle.decimal}>.{decimal}</Text> : ""}
-          </Text>
-        </AnimatedView>
-      </View>
-    </Pressable>
+    <GestureRecognizer onSwipe={() => resetBpm()}>
+      <Pressable onPress={handleClick}>
+        <View style={bpmStyle.bpm}>
+          <AnimatedView style={animated.bpm}>
+            <Text style={bpmStyle.bpmText} selectable={false}>
+              {Math.floor(bpm)}
+              {bpm ? <Text style={bpmStyle.decimal}>.{decimal}</Text> : ""}
+            </Text>
+          </AnimatedView>
+        </View>
+      </Pressable>
+    </GestureRecognizer>
   );
 }
