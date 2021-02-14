@@ -30,8 +30,12 @@ const style = StyleSheet.create({
 export default function Header() {
   return (
     <View style={style.header}>
-      <Text style={style.title}>Bipi</Text>
-      <Text style={style.exclamation}>!</Text>
+      <Text style={style.title} selectable={false}>
+        Bipi
+      </Text>
+      <Text style={style.exclamation} selectable={false}>
+        !
+      </Text>
     </View>
   );
 }

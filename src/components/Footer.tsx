@@ -12,6 +12,8 @@ const footerStyle = StyleSheet.create({
     position: "absolute",
     bottom: 16,
     right: 16,
+  },
+  text: {
     fontFamily: FONT_FAMILY,
     fontSize: 12,
     color: FOOTER_TEXT_COLOR,
@@ -26,7 +28,9 @@ export default function Footer() {
           console.log(e);
         }}
       >
-        <Text selectable={false}>made with ♥ by sehyunchung</Text>
+        <Text style={footerStyle.text} selectable={false}>
+          made with ♥ by sehyunchung
+        </Text>
       </Pressable>
     </View>
   );
