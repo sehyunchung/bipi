@@ -1,4 +1,4 @@
-import { Settings2 } from "lucide-react";
+import { Settings as SettingsIcon } from "lucide-react";
 
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
@@ -9,8 +9,11 @@ export function Settings() {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="outline" className="w-10 rounded-full p-0">
-          <Settings2 className="h-4 w-4" />
+        <Button
+          variant="ghost"
+          className="absolute right-2 top-2 w-10 rounded-full p-0"
+        >
+          <SettingsIcon className="h-4 w-4" />
           <span className="sr-only">Open settings</span>
         </Button>
       </PopoverTrigger>
@@ -21,7 +24,7 @@ export function Settings() {
           </div>
           <div className="grid gap-2">
             <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="width">Reset</Label>
+              <Label htmlFor="width">Reset after</Label>
               <Input id="width" defaultValue="4s" className="col-span-2 h-8" />
             </div>
             <div className="grid grid-cols-3 items-center gap-4">

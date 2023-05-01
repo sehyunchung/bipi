@@ -5,7 +5,7 @@ export default function Bpm() {
 
   return (
     <button
-      className="text-6xl w-full h-full"
+      className="text-[25vw] w-full h-full"
       onClick={() => {
         tap();
       }}

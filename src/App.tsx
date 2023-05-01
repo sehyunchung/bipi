@@ -3,9 +3,9 @@ import { Settings } from "./components/Settings";
 
 function App() {
   return (
-    <div className="border-red-500">
-      <Settings />
+    <div className="relative flex flex-col w-screen h-screen font-mono">
       <Bpm />
+      <Settings />
     </div>
   );
 }
