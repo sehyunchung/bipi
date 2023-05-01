@@ -10,6 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@radix-ui/react-label": "^2.0.1",
+    "@radix-ui/react-popover": "^1.0.5",
+    "@radix-ui/react-slot": "^1.0.1",
     "class-variance-authority": "^0.6.0",
     "clsx": "^1.2.1",
     "lucide-react": "^0.190.0",

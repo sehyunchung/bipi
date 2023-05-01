@@ -1,9 +1,10 @@
-import React from "react";
 import Bpm from "./components/BpmCounter";
+import { Settings } from "./components/Settings";
 
 function App() {
   return (
-    <div className="text-lg">
+    <div className="border-red-500">
+      <Settings />
       <Bpm />
     </div>
   );
