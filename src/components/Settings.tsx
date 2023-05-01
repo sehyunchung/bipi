@@ -1,11 +1,34 @@
 import { Settings as SettingsIcon } from "lucide-react";
+import { useAtom } from "jotai";
 
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+import { Switch } from "./ui/switch";
+
+import { settingsAtom } from "../lib/settings";
 
 export function Settings() {
+  const [settings, setSettings] = useAtom(settingsAtom);
+
+  const handleIntervalChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(event.target.value, 10);
+    if (isNaN(value)) return;
+    setSettings((prev) => ({ ...prev, resetTimerIntervalAsSec: value }));
+  };
+
+  const handleDecimalChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(event.target.value, 10);
+    if (isNaN(value)) return;
+    if (![0, 1, 2].includes(value)) return;
+    setSettings((prev) => ({ ...prev, decimal: value as 0 | 1 | 2 }));
+  };
+
+  const handleHalfBeatChange = (checked: boolean) => {
+    setSettings((prev) => ({ ...prev, halfBeat: checked }));
+  };
+
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -24,27 +47,30 @@ export function Settings() {
           </div>
           <div className="grid gap-2">
             <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="width">Reset after</Label>
-              <Input id="width" defaultValue="4s" className="col-span-2 h-8" />
-            </div>
-            <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="maxWidth">Decimal</Label>
+              <Label htmlFor="interval">Reset(sec)</Label>
               <Input
-                id="maxWidth"
-                defaultValue="2"
+                id="interval"
+                value={settings.resetTimerIntervalAsSec}
+                onChange={handleIntervalChange}
                 className="col-span-2 h-8"
               />
             </div>
             <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="height">Count</Label>
-              <Input id="height" defaultValue="4" className="col-span-2 h-8" />
+              <Label htmlFor="decimal">Decimal</Label>
+              <Input
+                id="decimal"
+                value={settings.decimal}
+                onChange={handleDecimalChange}
+                className="col-span-2 h-8"
+              />
             </div>
             <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="maxHeight">Half Beat</Label>
-              <Input
-                id="maxHeight"
-                defaultValue="false"
-                className="col-span-2 h-8"
+              <Label htmlFor="half">Half Beat</Label>
+              <Switch
+                id="half"
+                className="col-span-2"
+                checked={settings.halfBeat}
+                onCheckedChange={handleHalfBeatChange}
               />
             </div>
           </div>

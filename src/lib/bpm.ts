@@ -1,4 +1,7 @@
+import { useAtomValue } from "jotai";
 import { useCallback, useEffect, useState } from "react";
+
+import { settingsAtom } from "./settings";
 
 export class BpmCounter {
   private lastBeatTime: number;
@@ -15,7 +18,7 @@ export class BpmCounter {
 
     if (elapsed > 0) {
       const beatsPerMillis = 1.0 / (elapsed / 60000.0);
-      this.bpm = Math.floor(beatsPerMillis * 100) / 100;
+      this.bpm = beatsPerMillis;
     }
 
     this.lastBeatTime = time;
@@ -31,15 +34,23 @@ export class BpmCounter {
   }
 }
 
-const BPM_TIMEOUT = 5000;
 const bpmCounter = new BpmCounter();
 
 export const useBpmCounter = () => {
   const [bpm, setBpm] = useState(0);
+  const { resetTimer, resetTimerIntervalAsSec, halfBeat, decimal } =
+    useAtomValue(settingsAtom);
 
   const tap = () => {
     bpmCounter.beat();
-    if (bpmCounter.getBpm()) setBpm(bpmCounter.getBpm());
+
+    const baseBpm = bpmCounter.getBpm();
+
+    if (baseBpm) {
+      const decimaledBpm = Math.round(baseBpm * 10 ** decimal) / 10 ** decimal;
+      const bpm = halfBeat ? decimaledBpm * 2 : decimaledBpm;
+      setBpm(bpm);
+    }
   };
 
   const reset = useCallback(() => {
@@ -48,14 +59,17 @@ export const useBpmCounter = () => {
   }, []);
 
   useEffect(() => {
-    const id = setTimeout(() => {
-      reset();
-    }, BPM_TIMEOUT);
+    const id = setTimeout(
+      () => {
+        reset();
+      },
+      resetTimer ? resetTimerIntervalAsSec * 1_000 : 0
+    );
 
     return () => {
       clearTimeout(id);
     };
-  }, [bpm, reset]);
+  }, [bpm, reset, resetTimer, resetTimerIntervalAsSec]);
 
   return { bpm, tap, reset };
 };

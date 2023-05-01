@@ -1,7 +1,7 @@
 import { useBpmCounter } from "../lib/bpm";
 
 export default function Bpm() {
-  const { bpm, tap, reset } = useBpmCounter();
+  const { bpm, tap } = useBpmCounter();
 
   return (
     <button
