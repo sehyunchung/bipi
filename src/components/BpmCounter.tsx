@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 import { useBpmCounter } from "../lib/bpm";
 
 export default function Bpm() {
