@@ -4,7 +4,7 @@ export type BpmCounterSettings = {
   theme: "light" | "dark" | "system";
   resetTimer: boolean;
   resetTimerIntervalAsSec: number;
-  decimal: 0 | 1 | 2;
+  decimal: number;
   halfBeat: boolean;
 };
 

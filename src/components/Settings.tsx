@@ -15,14 +15,15 @@ export function Settings() {
   const handleIntervalChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(event.target.value, 10);
     if (isNaN(value)) return;
+
     setSettings((prev) => ({ ...prev, resetTimerIntervalAsSec: value }));
   };
 
   const handleDecimalChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(event.target.value, 10);
     if (isNaN(value)) return;
-    if (![0, 1, 2].includes(value)) return;
-    setSettings((prev) => ({ ...prev, decimal: value as 0 | 1 | 2 }));
+
+    setSettings((prev) => ({ ...prev, decimal: value }));
   };
 
   const handleHalfBeatChange = (checked: boolean) => {
@@ -47,9 +48,11 @@ export function Settings() {
           </div>
           <div className="grid gap-2">
             <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="interval">Reset(sec)</Label>
+              <Label htmlFor="reset-interval">Reset(sec.)</Label>
               <Input
-                id="interval"
+                id="reset-interval"
+                type="number"
+                min={0}
                 value={settings.resetTimerIntervalAsSec}
                 onChange={handleIntervalChange}
                 className="col-span-2 h-8"
@@ -59,6 +62,9 @@ export function Settings() {
               <Label htmlFor="decimal">Decimal</Label>
               <Input
                 id="decimal"
+                type="number"
+                min={0}
+                max={2}
                 value={settings.decimal}
                 onChange={handleDecimalChange}
                 className="col-span-2 h-8"
