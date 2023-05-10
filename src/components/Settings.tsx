@@ -8,9 +8,14 @@ import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Switch } from "./ui/switch";
 
 import { settingsAtom } from "../lib/settings";
+import { themeAtom } from "../lib/theme";
+import { cn } from "../lib/utils";
 
 export function Settings() {
   const [settings, setSettings] = useAtom(settingsAtom);
+  const [theme, setTheme] = useAtom(themeAtom);
+
+  const themeClass = theme === "dark" ? "dark" : "";
 
   const handleIntervalChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(event.target.value, 10);
@@ -30,19 +35,32 @@ export function Settings() {
     setSettings((prev) => ({ ...prev, halfBeat: checked }));
   };
 
+  const handleThemeChange = (checked: boolean) => {
+    setTheme(checked ? "dark" : "light");
+  };
+
   return (
     <Popover>
       <PopoverTrigger asChild>
         <Button
           variant="ghost"
-          className="absolute right-2 top-2 w-10 rounded-full p-0"
+          size="lg"
+          className="absolute right-2 bottom-2 w-10 rounded-full p-0"
         >
-          <SettingsIcon className="h-4 w-4" />
+          <SettingsIcon
+            color={theme === "dark" ? "white" : undefined}
+            className="h-7 w-7"
+          />
           <span className="sr-only">Open settings</span>
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-80">
-        <div className="grid gap-4">
+      <PopoverContent className={cn("w-80", themeClass)}>
+        <div
+          className={cn(
+            "grid gap-4  font-mono dark:bg-black dark:text-white",
+            themeClass
+          )}
+        >
           <div className="space-y-2">
             <h4 className="font-medium leading-none">Settings</h4>
           </div>
@@ -77,6 +95,15 @@ export function Settings() {
                 className="col-span-2"
                 checked={settings.halfBeat}
                 onCheckedChange={handleHalfBeatChange}
+              />
+            </div>
+            <div className="grid grid-cols-3 items-center gap-4">
+              <Label htmlFor="theme">Dark Mode</Label>
+              <Switch
+                id="theme"
+                className="col-span-2"
+                checked={theme === "dark"}
+                onCheckedChange={handleThemeChange}
               />
             </div>
           </div>
