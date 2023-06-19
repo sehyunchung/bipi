@@ -9,45 +9,68 @@
 import Foundation
 
 struct Tapper {
-    private let oneSec: Int = 60000
-    private var cue: [Double] = []
+    private let millisecondsInSecond: Int = 60_000
+    private var tapTimes: [Double] = []
 
+    /// Tap function captures the current time of tapping
     mutating func tap() {
-        let currentTime = NSDate().timeIntervalSince1970 * 1000
-        let prevTime = cue.last ?? currentTime
+        let currentTimeInMilliseconds = getCurrentTimeInMilliseconds()
 
-        guard (currentTime - prevTime) < 4000 else {
+        if shouldReset(currentTime: currentTimeInMilliseconds) {
             reset()
-            cue.append(currentTime)
-            return
         }
 
-        cue.append(currentTime)
+        tapTimes.append(currentTimeInMilliseconds)
     }
 
+    /// Resets the list of tap times
     mutating func reset() {
-        cue = []
+        tapTimes = []
     }
 
+    /// Calculates BPM (Beats Per Minute) from the tap times
     var bpm: Double {
-        guard cue.count > 1 else {
+        guard tapTimes.count > 1 else {
             return 0
         }
 
-        let beats = cue.count - 1
-        let duration = cue.last! - cue.first!
-        let rawBpm = Double(oneSec * beats) / duration
-        let twoDecimalBpm = (rawBpm * 100).rounded() / 100
+        let beatCount = tapTimes.count - 1
+        let durationInMilliseconds = calculateDurationInMilliseconds()
+        let rawBpm = Double(millisecondsInSecond * beatCount) / durationInMilliseconds
+        let roundedBpm = roundToTwoDecimalPlaces(value: rawBpm)
 
-        return twoDecimalBpm
+        return roundedBpm
     }
 
+    /// Calculates interval between taps in seconds
     var interval: Double {
-        guard cue.count > 1 else {
+        guard tapTimes.count > 1 else {
             return 1_000_000
         }
-        let beats = cue.count - 1
-        let duration = cue.last! - cue.first!
-        return duration / Double(beats) / 1000
+        let beatCount = tapTimes.count - 1
+        let durationInMilliseconds = calculateDurationInMilliseconds()
+        return durationInMilliseconds / Double(beatCount) / 1000
+    }
+
+    // MARK: - Helper Functions
+
+    private func getCurrentTimeInMilliseconds() -> Double {
+        return NSDate().timeIntervalSince1970 * 1000
+    }
+
+    private func shouldReset(currentTime: Double) -> Bool {
+        guard let previousTime = tapTimes.last else {
+            return false
+        }
+        let intervalSinceLastTap = currentTime - previousTime
+        return intervalSinceLastTap > 4000
+    }
+
+    private func calculateDurationInMilliseconds() -> Double {
+        return tapTimes.last! - tapTimes.first!
+    }
+
+    private func roundToTwoDecimalPlaces(value: Double) -> Double {
+        return (value * 100).rounded() / 100
     }
 }
